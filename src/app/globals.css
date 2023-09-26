@@ -118,7 +118,12 @@ a {
     font-size: 34px;
     line-height: 36px;
     font-weight: 200;
+    transition: all .3s ease-in-out;
   }
+}
+
+.logo a:hover {
+  letter-spacing: 3px;
 }
 
 .cards {
@@ -161,6 +166,11 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background: #fff;
+  color: #000;
+}
+
 .navigation {
   display: flex;
   gap: 20px;
@@ -181,14 +191,13 @@ button {
 @media (max-width: 768px) {
   .container {
     gap: 40px;
-    padding: 20px 5%;
+    padding: 14px 4%;
   }
 
   input#search {
     font-size: 18px;
     line-height: 20px;
     padding: 10px 16px;
-    margin-top: 20px;
     height: unset;
     width: 100%;
   }
@@ -210,4 +219,23 @@ button {
     line-height: 18px;
     padding: 10px 16px;
   }
+}
+
+footer {
+  width: 100%;
+  text-align: right;
+}
+
+.credits {
+  color: #ffffff82;
+  font-size: 12px;
+}
+
+.credits a {
+  color: #fff;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 18px;
 }

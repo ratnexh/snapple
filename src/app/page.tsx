@@ -48,8 +48,8 @@ export default function Home() {
     if (timeoutId) clearTimeout(timeoutId);
     const id = setTimeout(() => {
       setLoading(true);
-      search === '' ? fetchData('purple', page) : fetchData(search, page)
-    }, 500);
+      search === '' ? fetchData('rose', page) : fetchData(search, page)
+    }, 1000);
     setTimeoutId(id);
   }, [search, page])
 
@@ -72,6 +72,11 @@ export default function Home() {
               <button onClick={() => { setPage(nextPage => nextPage + 1) }}>Next Page</button>
             </div>
           </>
+          <footer>
+            <div className="credits">
+              Designed & Developed by <a href='https://www.linkedin.com/in/ratnexh' target='_blank' rel="noreferrer">Ratnesh</a>.
+            </div>
+          </footer>
         </div>
       )}
     </>
