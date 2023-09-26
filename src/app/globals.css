@@ -102,6 +102,11 @@ a {
   padding: 70px 10%;
 }
 
+.container:not(:has(.cards)) {
+  justify-content: center;
+  height: 100vh;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;

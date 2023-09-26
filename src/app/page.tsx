@@ -45,16 +45,16 @@ export default function Home() {
 
   return (
     <div className="container">
-      <input type="search" name="image-search" id="search" value={search} onChange={(e: any) => { setSearch(e.target.value) }} placeholder="Write keyword to search..." />
-      <div className="cards">
+      <input type="search" name="image-search" id="search" value={search} onChange={(e: any) => { setSearch(e.target.value) }} placeholder="Search images here..." />
+      {search != '' && <div className="cards">
         {data.map((item: Image, index: number) => (
           <div key={index} className={`item item-${index}`}>
             <a href={item.urls.raw} target="_blank"> <img src={item.urls.regular} alt={item.alt_description} /></a>
           </div>
         ))}
-      </div>
-      {page >= 2 ? <button onClick={() => { setPage(prevPage => prevPage - 1) }}>Previous Page</button> : ''}
-      <button onClick={() => { setPage(nextPage => nextPage + 1) }}>Next Page</button>
+      </div>}
+      {page >= 2 && <button onClick={() => { setPage(prevPage => prevPage - 1) }}>Previous Page</button>}
+      {search != '' && <button onClick={() => { setPage(nextPage => nextPage + 1) }}>Next Page</button>}
     </div>
   )
 }
