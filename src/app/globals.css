@@ -130,7 +130,7 @@ a {
   width: 33.33%;
   max-height: 450px;
   overflow: hidden;
-  padding: 10px;
+  padding: 10px 10px 30px 10px;
 }
 
 .item img {
@@ -205,9 +205,13 @@ footer {
   }
 
   .item {
-    padding: 5px;
+    padding: 5px 5px 30px 5px;
     max-height: 200px;
     width: 50%;
+  }
+
+  .download_btn {
+    font-size: 14px;
   }
 
   .logo a {

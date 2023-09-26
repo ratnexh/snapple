@@ -38,6 +38,7 @@ export default function Home() {
       });
       const resData = await res.json()
       setData(resData.results)
+      console.log(resData);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -63,7 +64,8 @@ export default function Home() {
             <div className="cards">
               {data.map((item: Image, index: number) => (
                 <div key={index} className={`item item-${index}`}>
-                  <a href={item.urls.raw} target="_blank"> <img src={item.urls.small} alt={item.alt_description} /></a>
+                  <a href={item.urls.raw} target="_blank"> <img src={item.urls.regular} alt={item.alt_description} /></a>
+                  <a className="download_btn" href={`${item.links.download}&force=true`}>Download</a>
                 </div>
               ))}
             </div>
