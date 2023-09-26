@@ -45,9 +45,9 @@ export default function Home() {
     }
   }
   useEffect(() => {
-    setLoading(true);
     if (timeoutId) clearTimeout(timeoutId);
     const id = setTimeout(() => {
+      setLoading(true);
       search === '' ? fetchData('purple', page) : fetchData(search, page)
     }, 500);
     setTimeoutId(id);
