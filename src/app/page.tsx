@@ -1,6 +1,12 @@
 'use client'
 import { useEffect, useState } from "react";
 import Loader from './components/Loader';
+import Cat from "./components/cat";
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import DownloadIcon from '@mui/icons-material/Download';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 interface Image {
   id: string,
@@ -13,6 +19,15 @@ interface Image {
     regular: string,
     small: string,
     thumb: string,
+  },
+  user: {
+    name: string,
+    portfolio_url: any,
+    instagram_username: string,
+    profile_image: {
+      large: string,
+      medium: string,
+    }
   },
   links: {
     self: string,
@@ -27,6 +42,8 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
 
   const fetchData = async (s: any, p: number) => {
     try {
@@ -49,29 +66,75 @@ export default function Home() {
     if (timeoutId) clearTimeout(timeoutId);
     const id = setTimeout(() => {
       setLoading(true);
-      search === '' ? fetchData('rose', page) : fetchData(search, page)
+      search === '' ? fetchData('Yoda', page) : fetchData(search, page)
     }, 1000);
     setTimeoutId(id);
+    const handleScroll = () => {
+      setScrollTop(window.scrollY);
+      setShowBackToTop(window.scrollY > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [search, page])
 
+  const handlePrevPage = () => {
+    setLoading(true);
+    setPage(prevPage => prevPage - 1)
+  }
+  const handleNextPage = () => {
+    setLoading(true);
+    setPage(nextPage => nextPage + 1)
+  }
+
+  const handleCatClick = (event: React.MouseEvent<HTMLLIElement>) => {
+    const targetButton = event.target as HTMLLIElement;
+    setSearch(targetButton.textContent || '');
+  }
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (typeof document !== 'undefined') {
+    const topbar = document.querySelector('.topbar')
+    scrollTop > 100 ? topbar?.classList.add('fixed') : topbar?.classList.remove('fixed')
+  }
   return (
     <>
       {loading ? <Loader /> : (
         <div className="container">
           <div className="logo"><a href="/">PIXHUB.</a></div>
-          <input type="search" name="image-search" id="search" value={search} onChange={(e: any) => { setSearch(e.target.value) }} placeholder="Search images here..." />
+          <div className="search__field">
+            <input autoFocus type="search" name="image-search" id="search" value={search} onChange={(e: any) => { setSearch(e.target.value) }} placeholder="Search images here..." />
+          </div>
+          <Cat handleClick={handleCatClick} />
           <>
             <div className="cards">
               {data.map((item: Image, index: number) => (
                 <div key={index} className={`item item-${index}`}>
-                  <a href={item.urls.raw} target="_blank"> <img src={item.urls.regular} alt={item.alt_description} /></a>
-                  <a className="download_btn" href={`${item.links.download}&force=true`}>Download</a>
+                  <span className="view_full"><a href={item.urls.raw} target="_blank" rel="noreferrer"> <VisibilityIcon /></a></span>
+                  <img src={item.urls.regular} alt={item.alt_description} />
+                  <div className="overlays">
+                    <div className="profile">
+                      <a className="name" href={`https://www.instagram.com/${item.user.instagram_username}`} target="_blank" rel="noreferrer" title="Instagram">
+                        <img src={item.user.profile_image.medium} alt={item.user.name} />
+                        <p>{item.user.name}</p>
+                      </a>
+                    </div>
+                    <span>
+                      {item.user.portfolio_url &&
+                        <a className="portfolio_url" href={item.user.portfolio_url} target="_blank" rel="noreferrer" title="Portfolio"><PersonSearchIcon /></a>}
+                      <a className="download_btn" href={`${item.links.download}&force=true`} target="_blank" rel="noreferrer" title="Download"><DownloadIcon /></a>
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
             <div className="navigation">
-              {page >= 2 && <button onClick={() => { setPage(prevPage => prevPage - 1) }}>Previous Page</button>}
-              <button onClick={() => { setPage(nextPage => nextPage + 1) }}>Next Page</button>
+              {page >= 2 && <button onClick={handlePrevPage} className="prev"><NavigateNextIcon />Previous Page</button>}
+              <button onClick={handleNextPage} className="next">Next Page<NavigateNextIcon /></button>
             </div>
           </>
           <footer>
@@ -79,6 +142,9 @@ export default function Home() {
               Designed & Developed by <a href='https://www.linkedin.com/in/ratnexh' target='_blank' rel="noreferrer">Ratnesh</a>.
             </div>
           </footer>
+          <div className="back_to_top" onClick={handleScrollTop} style={{ display: showBackToTop ? 'flex' : 'none' }}>
+            <KeyboardArrowUpIcon />
+          </div>
         </div>
       )}
     </>
