@@ -261,7 +261,7 @@ button {
 }
 
 .prev {
-  padding: 10px 16px 10px 6px;
+  padding: 5px 16px 5px 6px;
 
   & svg {
     transform: rotate(180deg);
@@ -269,7 +269,7 @@ button {
 }
 
 .next {
-  padding: 10px 6px 10px 16px;
+  padding: 5px 6px 5px 16px;
 }
 
 button:hover,
@@ -323,16 +323,22 @@ footer {
 .credits {
   color: #ffffff82;
   font-size: 12px;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .credits a {
   color: #fff;
-  text-decoration: none;
 }
 
 h1 {
   font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  .item {
+    width: calc(50% - 10px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -408,8 +414,12 @@ h1 {
     justify-content: center;
   }
 
-  .logo,
-  .credits {
+  .logo {
     text-align: center;
+  }
+
+  .credits {
+    flex-direction: column-reverse;
+    gap: 10px;
   }
 }

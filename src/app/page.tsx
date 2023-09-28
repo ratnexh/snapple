@@ -111,7 +111,8 @@ export default function Home() {
           </>
           <footer>
             <div className="credits">
-              Designed & Developed by <a href='https://www.linkedin.com/in/ratnexh' target='_blank' rel="noreferrer">Ratnesh</a>.
+              <span>Images from <a href="https://unsplash.com/" className="unsplash">Unsplash</a>.</span>
+              <span>Designed & Developed by <a href='https://www.linkedin.com/in/ratnexh' target='_blank' rel="noreferrer">Ratnesh</a>.</span>
             </div>
           </footer>
           <div className="back_to_top" onClick={handleScrollTop} style={{ display: showBackToTop ? 'flex' : 'none' }}>
