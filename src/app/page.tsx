@@ -55,7 +55,7 @@ export default function Home() {
       });
       const resData = await res.json()
       setData(resData.results)
-      console.log(resData);
+      // console.log(resData);
       setLoading(false);
     } catch (error) {
       console.log(error);
