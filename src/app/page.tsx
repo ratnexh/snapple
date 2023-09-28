@@ -7,6 +7,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+// import Pixabay from './components/pixabay'
 
 export default function Home() {
   const [data, setData] = useState<Image[]>([]);
@@ -77,6 +78,7 @@ export default function Home() {
     <>
       {loading ? <Loader /> : (
         <div className="container">
+          {/* <Pixabay /> */}
           <div className="logo"><a href="/">PIXHUB.</a></div>
           <div className="search__field">
             <input autoFocus type="search" name="image-search" id="search" value={search} onChange={(e: any) => { setSearch(e.target.value) }} placeholder="Search images here..." />
