@@ -28,7 +28,7 @@ export default function Home() {
       });
       const resData = await res.json()
       setData(resData.results)
-      // console.log(resData);
+      console.log(resData);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -92,10 +92,17 @@ export default function Home() {
                   <img src={item.urls.regular} alt={item.alt_description} />
                   <div className="overlays">
                     <div className="profile">
-                      <a className="name" href={`https://www.instagram.com/${item.user.instagram_username}`} target="_blank" rel="noreferrer" title="Instagram">
-                        <img src={item.user.profile_image.medium} alt={item.user.name} />
-                        <p>{item.user.name}</p>
-                      </a>
+                      {item.user.instagram_username ? (
+                        <a className="name" href={`https://www.instagram.com/${item.user.instagram_username}`} target="_blank" rel="noreferrer" title="Instagram">
+                          <img src={item.user.profile_image.medium} alt={item.user.name} />
+                          <p>{item.user.name}</p>
+                        </a>
+                      ) : (
+                        <a className="name" href={item.user.portfolio_url} target="_blank" rel="noreferrer" title="Portfolio">
+                          <img src={item.user.profile_image.medium} alt={item.user.name} />
+                          <p>{item.user.name}</p>
+                        </a>
+                      )}
                     </div>
                     <span>
                       {item.user.portfolio_url &&
@@ -108,7 +115,7 @@ export default function Home() {
             </div>
             <div className="navigation">
               {page >= 2 && <button onClick={handlePrevPage} className="prev"><NavigateNextIcon />Previous Page</button>}
-              <button onClick={handleNextPage} className="next">Next Page<NavigateNextIcon /></button>
+              {data.length === 30 && <button onClick={handleNextPage} className="next">Next Page<NavigateNextIcon /></button>}
             </div>
           </>
           <footer>
