@@ -9,6 +9,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 export default function Home() {
+
   const [data, setData] = useState<Image[]>([]);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
