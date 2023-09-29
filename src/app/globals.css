@@ -97,6 +97,7 @@ a {
 }
 
 /* ===================================== */
+
 .container {
   display: flex;
   flex-direction: column;
@@ -344,7 +345,7 @@ h1 {
 @media (max-width: 768px) {
   .container {
     gap: 40px;
-    padding: 20px 4%;
+    padding: 30px 4% 20px;
   }
 
   input#search {

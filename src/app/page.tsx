@@ -35,6 +35,7 @@ export default function Home() {
       setLoading(false);
     }
   }
+
   useEffect(() => {
     if (timeoutId) clearTimeout(timeoutId);
     const id = setTimeout(() => {
@@ -74,13 +75,14 @@ export default function Home() {
     const topbar = document.querySelector('.topbar')
     scrollTop > 100 ? topbar?.classList.add('fixed') : topbar?.classList.remove('fixed')
   }
+
   return (
     <>
       {loading ? <Loader /> : (
         <div className="container">
           <div className="logo"><a href="/">Snapple.</a></div>
           <div className="search__field">
-            <input autoFocus type="search" name="image-search" id="search" value={search} onChange={(e: any) => { setSearch(e.target.value) }} placeholder="Search images here..." />
+            <input type="search" name="image-search" id="search" value={search} onChange={(e: any) => { setSearch(e.target.value) }} placeholder="Search images here..." />
           </div>
           <Cat handleClick={handleCatClick} />
           <>
