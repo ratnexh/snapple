@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PixHub - Free Images',
-  description: 'Search and download free images from PixHub',
+  title: 'Fotopedia - Free Images',
+  description: 'Search and download free images from Fotopedia',
 }
 
 export default function RootLayout({
