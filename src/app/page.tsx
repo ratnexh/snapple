@@ -40,7 +40,7 @@ export default function Home() {
     if (timeoutId) clearTimeout(timeoutId);
     const id = setTimeout(() => {
       setLoading(true);
-      search === '' ? fetchData('Yoda', page) : fetchData(search, page)
+      search === '' ? fetchData('Green', page) : fetchData(search, page)
     }, 1000);
     setTimeoutId(id);
     const handleScroll = () => {
@@ -90,7 +90,7 @@ export default function Home() {
               {data.map((item: Image, index: number) => (
                 <div key={index} className={`item item-${index}`}>
                   <span className="view_full"><a href={item.urls.raw} target="_blank" rel="noreferrer"> <VisibilityIcon /></a></span>
-                  <img src={item.urls.regular} alt={item.alt_description} />
+                  <img src={item.urls.small} alt={item.alt_description} />
                   <div className="overlays">
                     <div className="profile">
                       {item.user.instagram_username ? (
