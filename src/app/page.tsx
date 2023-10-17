@@ -23,7 +23,7 @@ export default function Home() {
       setLoading(true);
       const res = await fetch(`https://api.unsplash.com/search/photos?page=${p}&query=${s}&per_page=30`, {
         headers: {
-          'Authorization': 'Client-ID 0HStgGiTz9-_10dWeN0PD7IzWMp4qPHrxYBcC-IFIBE'
+          'Authorization': 'Client-ID YOUR_KEY_HERE'
         }
       });
       const resData = await res.json()
